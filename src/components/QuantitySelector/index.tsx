@@ -29,14 +29,14 @@ const styles = StyleSheet.create({
     width: 130,
     justifyContent: 'space-between',
     alignItems: 'center',
+    marginTop: 10,
   },
   button: {
     width: 35,
-    height: 30,
+    height: 35,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#d1d1d1',
-    overflow: 'hidden',
   },
   buttonText: {
     fontSize: 18,
