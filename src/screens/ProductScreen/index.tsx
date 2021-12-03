@@ -3,15 +3,15 @@ import {ScrollView, Text} from 'react-native';
 
 import Button from '../../components/Button';
 import ImageCarousel from '../../components/ImageCarousel';
-// import {Picker} from '@react-native-picker/picker';
+import {Picker} from '@react-native-picker/picker';
 import QuantitySlector from '../../components/QuantitySelector';
 import product from '../../data/product';
 import styles from '../ProductScreen/styles';
 
 const ProductScreen = () => {
-  // const [selectedOption, setSelectedOption] = useState(
-  //   product.options ? product.options[0] : null,
-  // );
+  const [selectedOption, setSelectedOption] = useState(
+    product.options ? product.options[0] : null,
+  );
   const [quantity, setQuantity] = useState(1);
   return (
     <ScrollView style={styles.root} showsVerticalScrollIndicator={false}>
@@ -22,13 +22,13 @@ const ProductScreen = () => {
       <ImageCarousel images={product.images} />
 
       {/* options selector */}
-      {/* <Picker
+      <Picker
         selectedValue={selectedOption}
         onValueChange={itemValue => setSelectedOption(itemValue)}>
         {product.options.map(option => (
           <Picker.Item label={option} value={option} key={product.id} />
         ))}
-      </Picker> */}
+      </Picker>
       {/* price */}
       <Text style={styles.price}>
         from ${product.price}

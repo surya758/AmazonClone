@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import React, {useCallback, useState} from 'react';
 
-const ImageCarousel = ({images}: {images: [string]}) => {
+const ImageCarousel = ({images}: {images: string[]}) => {
   const {width} = useWindowDimensions();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const onFlatListUpdate = useCallback(({viewableItems}) => {
