@@ -1,6 +1,10 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
+  new: {
+    fontSize: 22,
+    fontWeight: 'bold',
+  },
   root: {
     margin: 10,
   },

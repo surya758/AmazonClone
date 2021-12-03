@@ -24,7 +24,8 @@ const ProductScreen = () => {
       {/* options selector */}
       <Picker
         selectedValue={selectedOption}
-        onValueChange={itemValue => setSelectedOption(itemValue)}>
+        onValueChange={itemValue => setSelectedOption(itemValue)}
+        itemStyle={styles.new}>
         {product.options.map(option => (
           <Picker.Item label={option} value={option} key={product.id} />
         ))}
