@@ -14,6 +14,7 @@ const HomeScreen = () => {
         keyExtractor={item => item.id}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
         showsVerticalScrollIndicator={false}
+        bounces={false}
       />
     </View>
   );

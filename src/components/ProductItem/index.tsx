@@ -41,6 +41,7 @@ const ProductItem = (props: ProductItemProps) => {
                 }
                 size={18}
                 color={'#e47911'}
+                key={i}
               />
             ))}
             <Text> {item.ratings}</Text>

@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import colors from 'res/colors';
 
 const styles = StyleSheet.create({
   root: {
@@ -6,7 +7,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     borderColor: 'grey',
-    backgroundColor: 'white',
+    backgroundColor: colors.background,
   },
   image: {
     flex: 2,
