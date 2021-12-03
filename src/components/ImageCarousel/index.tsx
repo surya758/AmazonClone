@@ -5,11 +5,16 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 
 const ImageCarousel = ({images}: {images: [string]}) => {
-  const {height, width} = useWindowDimensions();
+  const {width} = useWindowDimensions();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const onFlatListUpdate = useCallback(({viewableItems}) => {
+    if (viewableItems.length > 0) {
+      setCurrentImageIndex(viewableItems[0].index || 0);
+    }
+  }, []);
   return (
     <View style={styles.root}>
       <FlatList
@@ -25,8 +30,23 @@ const ImageCarousel = ({images}: {images: [string]}) => {
         snapToInterval={width - 20}
         snapToAlignment={'center'}
         decelerationRate={'fast'}
+        viewabilityConfig={{
+          viewAreaCoveragePercentThreshold: 50,
+          minimumViewTime: 300,
+        }}
+        onViewableItemsChanged={onFlatListUpdate}
       />
-      <View style={styles.dot} />
+      <View style={styles.dots}>
+        {images.map((el, i) => (
+          <View
+            style={[
+              styles.dot,
+              {backgroundColor: i === currentImageIndex ? 'grey' : null},
+            ]}
+            key={i}
+          />
+        ))}
+      </View>
     </View>
   );
 };
@@ -47,5 +67,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: 'grey',
+    margin: 3,
+  },
+  dots: {
+    marginTop: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 });
