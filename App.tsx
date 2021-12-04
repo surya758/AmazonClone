@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import {StatusBar, View, useColorScheme} from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Navigation from './src/navigations/index';
@@ -15,10 +15,10 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <View style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <Navigation />
-    </SafeAreaView>
+    </View>
   );
 };
 

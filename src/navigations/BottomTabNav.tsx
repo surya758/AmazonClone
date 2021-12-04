@@ -15,7 +15,7 @@ const BottomTabNav = () => {
         tabBarShowLabel: false,
         headerShown: false,
         tabBarActiveTintColor: '#f99000',
-        tabBarInactiveTintColor: '#a37724',
+        tabBarInactiveTintColor: '#edc982',
       }}>
       <Tab.Screen
         name="HomeStack"
