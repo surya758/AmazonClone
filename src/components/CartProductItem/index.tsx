@@ -37,7 +37,7 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
         <View style={styles.rightContainer}>
           <Text numberOfLines={3}>{item.title}</Text>
           <View style={styles.ratingContainer}>
-            {/* {[0, 0, 0, 0, 0].map((el, i) => (
+            {[0, 0, 0, 0, 0].map((el, i) => (
               <FontAwesome
                 name={
                   i < Math.floor(item.avgRating)
@@ -49,9 +49,10 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
                 size={18}
                 color={'#e47911'}
                 key={i}
+                style={{paddingHorizontal: 1}}
               />
-            ))} */}
-            <Text>{item.ratings} Ratings</Text>
+            ))}
+            <Text> {item.ratings}</Text>
           </View>
           <Text style={styles.price}>
             from ${item.price}

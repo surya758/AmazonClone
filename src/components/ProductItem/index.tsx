@@ -1,6 +1,6 @@
 import {Image, Text, View} from 'react-native';
 
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
 import styles from '../ProductItem/styles';
 
@@ -30,8 +30,8 @@ const ProductItem = (props: ProductItemProps) => {
         <View style={styles.rightContainer}>
           <Text numberOfLines={3}>{item.title}</Text>
           <View style={styles.ratingContainer}>
-            {/* {[0, 0, 0, 0, 0].map((el, i) => (
-              <FontAwesome
+            {[0, 0, 0, 0, 0].map((el, i) => (
+              <Icon
                 name={
                   i < Math.floor(item.avgRating)
                     ? 'star'
@@ -42,8 +42,9 @@ const ProductItem = (props: ProductItemProps) => {
                 size={18}
                 color={'#e47911'}
                 key={i}
+                style={{paddingHorizontal: 1}}
               />
-            ))} */}
+            ))}
             <Text> {item.ratings}</Text>
           </View>
           <Text style={styles.price}>
