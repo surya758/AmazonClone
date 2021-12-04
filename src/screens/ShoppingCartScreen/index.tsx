@@ -15,6 +15,17 @@ const ShoppingCartScreen = () => {
   );
   return (
     <View style={styles.root}>
+      <Text style={styles.priceTextStyle}>
+        Subtotal ({products.length} Items): $
+        <Text style={{fontSize: 16, color: 'red'}}>{total.toFixed(2)}</Text>
+      </Text>
+      <View style={styles.buttonStyle}>
+        <Button
+          text={'Proceed to checkout'}
+          onPress={() => console.warn('Proceed to checkout')}
+          containerStyle={{borderColor: 'yellow'}}
+        />
+      </View>
       <FlatList
         data={products}
         renderItem={({item}) => <CartProductItem cartItem={item} />}
