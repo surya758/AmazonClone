@@ -1,5 +1,5 @@
+import {KeyboardAvoidingView, Platform, ScrollView} from 'react-native';
 import React, {useMemo, useState} from 'react';
-import {Text, View} from 'react-native';
 
 import Button from '../../components/Button';
 import CustomTextInput from '../../components/CustomTextInput/index';
@@ -17,45 +17,49 @@ const AddressScreen = () => {
   const [zipcode, setZipcode] = useState('');
   console.log(fullName);
   return (
-    <View style={styles.root}>
-      <Picker
-        selectedValue={selectedCountry}
-        onValueChange={setSelectedCountry}>
-        {countries.map(country => (
-          <Picker.Item
-            value={country.value}
-            label={country.label}
-            key={country.label}
-          />
-        ))}
-      </Picker>
-      <CustomTextInput
-        header={'Full name(First and Last name)'}
-        value={fullName}
-        setValue={setFullName}
-      />
-      <CustomTextInput
-        header={'Phone Number'}
-        value={phone}
-        setValue={setPhone}
-      />
-      <CustomTextInput
-        header={'Address'}
-        value={address}
-        setValue={setAddress}
-      />
-      <CustomTextInput header={'City'} value={city} setValue={setCity} />
-      <CustomTextInput
-        header={'Zipcode'}
-        value={zipcode}
-        setValue={setZipcode}
-      />
-      <Button
-        text={'Use this address'}
-        onPress={() => console.warn('Used this address')}
-        containerStyle={{borderColor: 'grey', backgroundColor: '#e6c353'}}
-      />
-    </View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 30 : 0}>
+      <ScrollView style={styles.root}>
+        <Picker
+          selectedValue={selectedCountry}
+          onValueChange={setSelectedCountry}>
+          {countries.map(country => (
+            <Picker.Item
+              value={country.value}
+              label={country.label}
+              key={country.label}
+            />
+          ))}
+        </Picker>
+        <CustomTextInput
+          header={'Full name(First and Last name)'}
+          value={fullName}
+          setValue={setFullName}
+        />
+        <CustomTextInput
+          header={'Phone Number'}
+          value={phone}
+          setValue={setPhone}
+        />
+        <CustomTextInput
+          header={'Address'}
+          value={address}
+          setValue={setAddress}
+        />
+        <CustomTextInput header={'City'} value={city} setValue={setCity} />
+        <CustomTextInput
+          header={'Zipcode'}
+          value={zipcode}
+          setValue={setZipcode}
+        />
+        <Button
+          text={'Use this address'}
+          onPress={() => console.warn('Used this address')}
+          containerStyle={{borderColor: 'grey', backgroundColor: '#e6c353'}}
+        />
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
