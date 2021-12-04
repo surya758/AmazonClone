@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     padding: 10,
+    fontWeight: 'bold',
   },
 });
 
