@@ -15,7 +15,6 @@ const AddressScreen = () => {
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [zipcode, setZipcode] = useState('');
-  console.log(fullName);
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}

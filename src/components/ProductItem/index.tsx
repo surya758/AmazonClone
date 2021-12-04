@@ -20,7 +20,7 @@ interface ProductItemProps {
 const ProductItem = (props: ProductItemProps) => {
   const navigation = useNavigation();
   const onPress = () => {
-    navigation.navigate('Product');
+    navigation.navigate('Product', {id: item.id});
   };
   const {item} = props;
   return (

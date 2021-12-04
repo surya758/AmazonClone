@@ -4,8 +4,10 @@ import {FlatList, Text, View} from 'react-native';
 import Button from '../../components/Button';
 import CartProductItem from '../../components/CartProductItem';
 import React from 'react';
+import ScreenNames from '../../utils/ScreenNames';
 import products from '../../data/cart';
 import styles from './styles';
+import {useNavigation} from '@react-navigation/native';
 
 const ShoppingCartScreen = () => {
   const total = products.reduce(
@@ -13,6 +15,10 @@ const ShoppingCartScreen = () => {
       summedPrice + product.quantity * product.item.price,
     0,
   );
+  const navigation = useNavigation();
+  const pressHandler = () => {
+    navigation.navigate(ScreenNames.address);
+  };
   return (
     <View style={styles.root}>
       <Text style={styles.priceTextStyle}>
@@ -22,7 +28,7 @@ const ShoppingCartScreen = () => {
       <View style={styles.buttonStyle}>
         <Button
           text={'Proceed to checkout'}
-          onPress={() => console.warn('Proceed to checkout')}
+          onPress={pressHandler}
           containerStyle={{borderColor: 'yellow'}}
         />
       </View>

@@ -1,6 +1,7 @@
+import CartStackNav from './CartStackNav';
 import Entypo from 'react-native-vector-icons/Entypo';
 import HomeScreen from '../screens/HomeScreen';
-import HomeStack from './HomeStack';
+import HomeStackNav from './HomeStackNav';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React from 'react';
 import ShoppingCartScreen from '../screens/ShoppingCartScreen';
@@ -18,7 +19,7 @@ const BottomTabNav = () => {
       }}>
       <Tab.Screen
         name="HomeStack"
-        component={HomeStack}
+        component={HomeStackNav}
         options={{
           tabBarIcon: ({color}) => (
             <Ionicons name="home" color={color} size={24} />
@@ -35,8 +36,8 @@ const BottomTabNav = () => {
         }}
       />
       <Tab.Screen
-        name="Cart"
-        component={ShoppingCartScreen}
+        name="CartStack"
+        component={CartStackNav}
         options={{
           tabBarIcon: ({color}) => (
             <Ionicons name="cart" color={color} size={24} />
