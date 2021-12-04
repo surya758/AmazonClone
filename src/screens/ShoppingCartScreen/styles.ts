@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   root: {
     margin: 5,
+    flex: 1,
   },
   separator: {
     marginBottom: 5,

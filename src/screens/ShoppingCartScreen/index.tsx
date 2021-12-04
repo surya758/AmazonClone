@@ -28,7 +28,9 @@ const ShoppingCartScreen = () => {
       </View>
       <FlatList
         data={products}
-        renderItem={({item}) => <CartProductItem cartItem={item} />}
+        renderItem={({item}) => {
+          return <CartProductItem cartItem={item} />;
+        }}
         keyExtractor={item => item.id}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
         showsVerticalScrollIndicator={false}

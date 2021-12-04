@@ -1,13 +1,16 @@
-import HomeScreen from '../screens/HomeScreen';
+import BottomTabNav from './BottomTabNav';
 import {NavigationContainer} from '@react-navigation/native';
-import ProductScreen from '../screens/ProductScreen';
 import React from 'react';
-import ShoppingCartScreen from '../screens/ShoppingCartScreen';
+import {createStackNavigator} from '@react-navigation/stack';
 
 const Navigation = () => {
+  const RootStack = createStackNavigator();
+
   return (
     <NavigationContainer>
-      <HomeScreen />
+      <RootStack.Navigator screenOptions={{headerShown: false}}>
+        <RootStack.Screen name="Bottom" component={BottomTabNav} />
+      </RootStack.Navigator>
     </NavigationContainer>
   );
 };
