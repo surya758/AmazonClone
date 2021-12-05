@@ -3,8 +3,8 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import HomeScreen from '../screens/HomeScreen';
 import HomeStackNav from './HomeStackNav';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import ProfileScreen from '../screens/ProfileScreen';
 import React from 'react';
-import ShoppingCartScreen from '../screens/ShoppingCartScreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const BottomTabNav = () => {
@@ -46,11 +46,13 @@ const BottomTabNav = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={ShoppingCartScreen}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({color}) => (
             <Entypo name="user" color={color} size={24} />
           ),
+          headerShown: true,
+          title: 'Profile',
         }}
       />
     </Tab.Navigator>

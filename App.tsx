@@ -2,9 +2,14 @@ import 'react-native-gesture-handler';
 
 import {StatusBar, View, useColorScheme} from 'react-native';
 
+import Amplify from 'aws-amplify';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Navigation from './src/navigations/index';
 import React from 'react';
+import config from './src/aws-exports';
+import {withAuthenticator} from 'aws-amplify-react-native';
+
+Amplify.configure(config);
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -22,4 +27,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default withAuthenticator(App);

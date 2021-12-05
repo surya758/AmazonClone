@@ -12,7 +12,7 @@ const CartStackNav = () => {
       <CartStack.Screen
         name={ScreenNames.cart}
         component={ShoppingCartScreen}
-        options={{title: 'Cart'}}
+        options={{title: 'Shopping Cart'}}
       />
       <CartStack.Screen
         name={ScreenNames.address}
