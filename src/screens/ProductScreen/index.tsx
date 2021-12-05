@@ -1,20 +1,56 @@
-import React, {useState} from 'react';
-import {ScrollView, Text} from 'react-native';
+import {ActivityIndicator, ScrollView, Text} from 'react-native';
+import {Auth, DataStore} from 'aws-amplify';
+import {CartProduct, Product} from '../../models';
+import React, {useEffect, useState} from 'react';
 
 import Button from '../../components/Button';
 import ImageCarousel from '../../components/ImageCarousel';
 import {Picker} from '@react-native-picker/picker';
 import QuantitySlector from '../../components/QuantitySelector';
-import product from '../../data/product';
 import styles from '../ProductScreen/styles';
 import {useRoute} from '@react-navigation/native';
 
 const ProductScreen = () => {
-  const [selectedOption, setSelectedOption] = useState(
-    product.options ? product.options[0] : null,
-  );
   const [quantity, setQuantity] = useState(1);
+  const [product, setProduct] = useState<Product | undefined>(undefined);
+  const [selectedOption, setSelectedOption] = useState<string | undefined>(
+    undefined,
+  );
   const route = useRoute();
+
+  useEffect(() => {
+    if (!route.params?.id) {
+      return;
+    }
+    DataStore.query(Product, route.params.id).then(setProduct);
+  }, [route.params?.id]);
+
+  useEffect(() => {
+    if (product?.option) {
+      setSelectedOption(product.option[0]);
+    }
+  }, [product]);
+
+  const onAddToCartHandler = async () => {
+    const user = await Auth.currentAuthenticatedUser();
+
+    if (!product || !user) {
+      return;
+    }
+
+    const newCartProduct = new CartProduct({
+      userSub: user.attributes.sub,
+      quantity: quantity,
+      option: selectedOption,
+      productID: product.id,
+    });
+
+    DataStore.save(newCartProduct);
+  };
+
+  if (!product) {
+    return <ActivityIndicator />;
+  }
   return (
     <ScrollView style={styles.root} showsVerticalScrollIndicator={false}>
       {/* title */}
@@ -28,15 +64,15 @@ const ProductScreen = () => {
         selectedValue={selectedOption}
         onValueChange={itemValue => setSelectedOption(itemValue)}
         itemStyle={styles.new}>
-        {product.options.map(option => (
+        {product.option.map(option => (
           <Picker.Item label={option} value={option} key={product.id} />
         ))}
       </Picker>
       {/* price */}
       <Text style={styles.price}>
-        from ${product.price}
+        from ${product.price.toFixed(2)}
         {product.oldPrice && (
-          <Text style={styles.oldPrice}> ${product.oldPrice}</Text>
+          <Text style={styles.oldPrice}> ${product.oldPrice.toFixed(2)}</Text>
         )}
       </Text>
       {/* description */}
@@ -46,12 +82,7 @@ const ProductScreen = () => {
       <QuantitySlector quantity={quantity} setQuantity={setQuantity} />
 
       {/* buttons */}
-      <Button
-        text={'Add to Cart'}
-        onPress={() => {
-          console.warn('Add to card!');
-        }}
-      />
+      <Button text={'Add to Cart'} onPress={onAddToCartHandler} />
       <Button
         text={'Buy Now'}
         onPress={() => {

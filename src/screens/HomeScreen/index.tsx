@@ -1,10 +1,18 @@
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
 
+import {DataStore} from 'aws-amplify';
+import {Product} from '../../models';
 import ProductItem from '../../components/ProductItem';
-import React from 'react';
-import products from '../../data/products';
+import styles from './styles';
 
 const HomeScreen = ({searchValue}: {searchValue: string}) => {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    DataStore.query(Product).then(setProducts);
+  }, []);
+
   return (
     <View style={styles.page}>
       {/*Render Product Component*/}
@@ -21,12 +29,3 @@ const HomeScreen = ({searchValue}: {searchValue: string}) => {
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-  page: {
-    padding: 10,
-  },
-  separator: {
-    marginBottom: 5,
-  },
-});
