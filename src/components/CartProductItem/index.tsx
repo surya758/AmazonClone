@@ -10,7 +10,7 @@ interface CartProductItemProps {
     id: string;
     quantity: number;
     option?: string;
-    item: {
+    product: {
       id: string;
       title: string;
       image: string;
@@ -23,7 +23,7 @@ interface CartProductItemProps {
 }
 
 const CartProductItem = ({cartItem}: CartProductItemProps) => {
-  const {quantity: quantityProp, item} = cartItem;
+  const {quantity: quantityProp, product} = cartItem;
   const [quantity, setQuantity] = useState(quantityProp);
   return (
     <View style={styles.root}>
@@ -31,18 +31,18 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
         <Image
           style={styles.image}
           source={{
-            uri: item.image,
+            uri: product.image,
           }}
         />
         <View style={styles.rightContainer}>
-          <Text numberOfLines={3}>{item.title}</Text>
+          <Text numberOfLines={3}>{product.title}</Text>
           <View style={styles.ratingContainer}>
             {[0, 0, 0, 0, 0].map((el, i) => (
               <FontAwesome
                 name={
-                  i < Math.floor(item.avgRating)
+                  i < Math.floor(product.avgRating)
                     ? 'star'
-                    : i + 0.5 < item.avgRating
+                    : i + 0.5 < product.avgRating
                     ? 'star-half-full'
                     : 'star-o'
                 }
@@ -52,12 +52,15 @@ const CartProductItem = ({cartItem}: CartProductItemProps) => {
                 style={{paddingHorizontal: 1}}
               />
             ))}
-            <Text> {item.ratings}</Text>
+            <Text> {product.ratings}</Text>
           </View>
           <Text style={styles.price}>
-            from $ {item.price}
-            {item.oldPrice && (
-              <Text style={styles.oldPrice}> $ {item.oldPrice}</Text>
+            from $ {product.price.toFixed(2)}
+            {product.oldPrice && (
+              <Text style={styles.oldPrice}>
+                {' '}
+                $ {product.oldPrice.toFixed(2)}
+              </Text>
             )}
           </Text>
         </View>
